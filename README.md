@@ -35,4 +35,8 @@ python to-spire-annotation/coco_to_spire.py --coco-anno path_to_coco_json --coco
 ```
 
 Convert spire annotations to MS COCO annotations.
+![convert](demo/convert.png)
+
+## Data statistics
+![stat](demo/stat.png)
 

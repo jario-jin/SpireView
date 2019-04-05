@@ -10,13 +10,13 @@ def main():
     parser = argparse.ArgumentParser(description="Convert COCO annotation to spire annotation")
     parser.add_argument(
         "--coco-anno",
-        default="/home/dataset/coco/annotations/instances_val2014.json",
+        default="/home/jario/dataset/coco/annotations/instances_val2014.json",
         help="path to coco annotation file",
         # required=True
     )
     parser.add_argument(
         "--coco-image-dir",
-        default="/home/dataset/coco/val2014",
+        default="/home/jario/dataset/coco/val2014",
         help="path to coco image dir",
     )
     parser.add_argument(
