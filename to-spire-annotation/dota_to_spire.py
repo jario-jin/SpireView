@@ -51,7 +51,7 @@ def main():
             with open(filepath,'r') as fp:
                 f = fp.readlines()[2:]                              #start reading line at third
                 for line in f:
-                    data = line.split(" ")              #将读取的Txt中的每一行转化为一个list
+                    data = line.split(" ")              
                     if(sp[0]<1200 or sp[1]<1200):
                         coefficient = args.coefficient
                     else:
