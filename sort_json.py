@@ -6,8 +6,8 @@ import time
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from skimage import io
-#from util import sort
-import sort
+from util import sort
+#import sort
 
 def to_sort(root):
     '''
