@@ -10,18 +10,18 @@ def main():
     parser = argparse.ArgumentParser(description="Convert txt formal annotation to spire annotation")
     parser.add_argument(
         "--Dota-dir",
-        default="H:\\05object_detection\\dataset\\Dota\\val\\labelTxt",
+        default="/home/bitvision/dataset/Dota/val/labelTxt",
         help="path to txt annotation file",
         # required=True
     )
     parser.add_argument(
         "--image-dir",
-        default="H:\\05object_detection\\dataset\\Dota\\val\\images",
+        default="/home/bitvision/dataset/Dota/val/images",
         help="path to image dir",
     )
     parser.add_argument(
         "--output-dir",
-        default="H:\\05object_detection\\dataset\\Dota\\val",
+        default="/home/bitvision/dataset/Dota/val/new_annotations",
         help="path to spire home dir",
     )
     parser.add_argument(
@@ -44,7 +44,7 @@ def main():
         img = cv2.imread(image_path)
         sp = img.shape
         with open(json_path, 'w')as jsonformal:
-            annos = []             #用来储存annos
+            annos = []             
             i = 0
             #print(oldname)
             filepath = os.path.join(args.Dota_dir,txt)
