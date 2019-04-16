@@ -254,7 +254,7 @@ if __name__ == '__main__':
   
   if not os.path.exists('output'):
     os.makedirs('output')
-  sort_root = 'D:\\video\\annotations\sort'
+  sort_root = '/home/bitvision/DK/spire-image-manager/utils/output'
   sequences = os.listdir(sort_root)
   for seq in sequences:
     mot_tracker = Sort() #create instance of the SORT tracker
