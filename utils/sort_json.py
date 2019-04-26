@@ -1,13 +1,15 @@
-import json
+#coding=utf-8
 import os
+import sys
+sys.path.append(os.getcwd())
+import json
 import numpy as np
 import argparse
 import time
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from skimage import io
-from third_party import sort
-
+from third_party  import sort
 
 def to_sort(root):
     '''
@@ -60,7 +62,7 @@ def to_spire(spire_root,sorted_sipre_root,seq):
                         area = (x2min - x1max) * (y2min - y1max)
                         iou = area / (w * h + w1 * h1 - area)
                     if (iou > 0.8):
-                        ann['tracked_id'] = int(id[1])
+                        ann[u'tracked_id'] = int(id[1])
                         break
             with open(os.path.join(new_path, anntation), 'w') as wp:
                 json.dump(all, wp)
@@ -69,7 +71,7 @@ def to_spire(spire_root,sorted_sipre_root,seq):
 def parse_args():
     """Parse input arguments."""
     parser = argparse.ArgumentParser(description='SORT demo')
-    parser.add_argument('--spire-dir', default="/home/bitvision/dataset/BITUAV/stage2",help="path to spire annotation file")
+    parser.add_argument('--spire-dir', default="/home/bitvision/dataset/BITUAV/stage3",help="path to spire annotation file")
     parser.add_argument('--sorted-dir', default="/home/bitvision/dataset/BITUAV/sort", help="path to sorted annotation file")
     parser.add_argument('--display', dest='display', help='Display online tracker output (slow) [False]',action='store_true')
     args = parser.parse_args()
