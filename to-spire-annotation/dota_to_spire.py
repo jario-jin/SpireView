@@ -12,7 +12,7 @@ def main():
         "--Dota-dir",
         default="/home/bitvision/dataset/Dota/val/labelTxt",
         help="path to txt annotation file",
-        # required=True
+        required=True
     )
     parser.add_argument(
         "--image-dir",

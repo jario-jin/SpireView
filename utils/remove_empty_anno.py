@@ -13,7 +13,7 @@ def main():
         "--spire-anno",
         default="/tmp/coco_spire",
         help="path to spire annotation dir",
-        # required=True
+        required=True
     )
     args = parser.parse_args()
     image_jsons = open_spire_annotations(args.spire_anno)

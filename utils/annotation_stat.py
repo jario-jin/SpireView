@@ -49,7 +49,7 @@ def main():
         "--spire-anno",
         default="/tmp/coco_spire",
         help="path to spire annotation dir",
-        # required=True
+        required=True
     )
     args = parser.parse_args()
     use_topdown_percent = True

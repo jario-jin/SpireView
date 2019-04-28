@@ -12,7 +12,7 @@ def main():
         "--coco-anno",
         default="/home/jario/dataset/coco/annotations/instances_val2014.json",
         help="path to coco annotation file",
-        # required=True
+        required=True
     )
     parser.add_argument(
         "--coco-image-dir",
