@@ -4,6 +4,48 @@ import os
 import json
 import cv2
 from tqdm import tqdm
+import pycocotools.mask as maskUtils
+import numpy as np
+import cv2
+
+
+def find_contours(*args, **kwargs):
+    """
+    Wraps cv2.findContours to maintain compatiblity between versions
+    3 and 4
+    Returns:
+        contours, hierarchy
+    """
+    if cv2.__version__.startswith('4'):
+        contours, hierarchy = cv2.findContours(*args, **kwargs)
+    elif cv2.__version__.startswith('3'):
+        _, contours, hierarchy = cv2.findContours(*args, **kwargs)
+    else:
+        raise AssertionError(
+            'cv2 must be either version 3 or 4 to call this method')
+
+    return contours, hierarchy
+
+
+def solve_coco_segs(segs_anno, h, w):
+    assert type(segs_anno['counts']) == list, "segs_anno['counts'] should be list"
+    rle = maskUtils.frPyObjects(segs_anno, h, w)
+    mask = maskUtils.decode(rle)
+    contours, hierarchy = find_contours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    area = 0
+    for contour in contours:
+        area += int(round(cv2.contourArea(contour)))
+    if area != 0:
+        segmentations = []
+        for contour in contours:
+            segmentation = []
+            for cp in range(contour.shape[0]):
+                segmentation.append(int(contour[cp, 0, 0]))
+                segmentation.append(int(contour[cp, 0, 1]))
+            segmentations.append(segmentation)
+    else:
+        segmentations = []
+    return segmentations
 
 
 def main():
@@ -25,15 +67,23 @@ def main():
         help="path to spire home dir",
     )
     parser.add_argument(
+        '--save-image',
+        action='store_true',
+        help='save image to scaled_images'
+    )
+    parser.add_argument(
         '--show-image',
         action='store_true',
         help='show image for testing'
     )
     args = parser.parse_args()
 
+    scaled_images = os.path.join(args.output_dir, 'scaled_images')
     args.output_dir = os.path.join(args.output_dir, 'annotations')
     if not os.path.exists(args.output_dir):
         os.makedirs(args.output_dir)
+    if not os.path.exists(scaled_images):
+        os.makedirs(scaled_images)
 
     f = open(args.coco_anno, 'r')
     json_str = f.read()
@@ -63,16 +113,27 @@ def main():
             spire_anno = {}
             spire_anno['area'] = anno['area']
             spire_anno['bbox'] = anno['bbox']
-            spire_anno['segmentation'] = anno['segmentation']
+            if isinstance(anno['segmentation'], dict):
+                spire_anno['segmentation'] = solve_coco_segs(anno['segmentation'], img_h, img_w)
+                assert anno['segmentation']['size'] == [img_h, img_w], "segmentation.size != [img_h, img_w]"
+            else:
+                spire_anno['segmentation'] = anno['segmentation']
             spire_anno['iscrowd'] = anno['iscrowd']
             category_id = anno['category_id']
             spire_anno['category_name'] = category_id_to_name[category_id]
-            spire_dict['annos'].append(spire_anno)
+            if len(spire_anno['segmentation']) > 0:
+                spire_dict['annos'].append(spire_anno)
+            else:
+                print("Image {} no segmentation.".format(img_name))
 
         # Generate spire annotation files for each image
         output_fn = os.path.join(args.output_dir, img_name+'.json')
         with open(output_fn, "w") as f:
             json.dump(spire_dict, f)
+
+        if args.save_image:
+            open(os.path.join(scaled_images, img_name), 'wb').write(
+                open(os.path.join(args.coco_image_dir, img_name), 'rb').read())
 
         # Show image for testing.
         if args.show_image:
