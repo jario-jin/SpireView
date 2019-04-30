@@ -40,6 +40,8 @@ def main():
                 if len(val) == 0 or len(val[0]) == 0:
                     raise Exception("[ZERO] key: {}, val: {}".format(key, val))
                 else:
+                    # print(coco.anns[key])
+                    coco.annToMask(coco.anns[key])
                     print("i: {}, len(l1): {}, len(l2): {}".format(i, len(val), len(val[0])))
         else:
             raise Exception("[NO_KEYS] key: {}, val: {}".format(key, val_d))

@@ -38,11 +38,12 @@ def solve_coco_segs(segs_anno, h, w):
     if area != 0:
         segmentations = []
         for contour in contours:
-            segmentation = []
-            for cp in range(contour.shape[0]):
-                segmentation.append(int(contour[cp, 0, 0]))
-                segmentation.append(int(contour[cp, 0, 1]))
-            segmentations.append(segmentation)
+            if contour.shape[0] >= 6:  # three points
+                segmentation = []
+                for cp in range(contour.shape[0]):
+                    segmentation.append(int(contour[cp, 0, 0]))
+                    segmentation.append(int(contour[cp, 0, 1]))
+                segmentations.append(segmentation)
     else:
         segmentations = []
     return segmentations
