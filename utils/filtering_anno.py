@@ -15,6 +15,12 @@ def main():
         help="path to spire annotation dir",
         required=True
     )
+    parser.add_argument(
+        "--score-thrs",
+        default=0.01,
+        help="retain the boxes that score > 'score-thrs'",
+        required=True
+    )
     args = parser.parse_args()
     image_jsons = open_spire_annotations(args.spire_anno)
 
@@ -29,9 +35,9 @@ def main():
             if bbox[2] == 0 or bbox[3] == 0:
                 print("File_name: {}, bbox: {}".format(image_anno['file_name'], bbox))
                 retain = False
-            segs = np.array(anno['segmentation'], np.float32)
-            if len(segs) == 0:
-                print("File_name: {}, segs: {}".format(image_anno['file_name'], segs))
+            assert 'score' in anno.keys(), "Annotations should have score."
+            if float(anno['score']) < float(args.score_thrs):
+                print("File_name: {}, score: {}".format(image_anno['file_name'], anno['score']))
                 retain = False
             if retain:
                 retained_annos.append(anno)
