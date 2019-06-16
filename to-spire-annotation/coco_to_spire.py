@@ -114,14 +114,18 @@ def main():
             spire_anno = {}
             spire_anno['area'] = anno['area']
             spire_anno['bbox'] = anno['bbox']
+
             if isinstance(anno['segmentation'], dict):
                 spire_anno['segmentation'] = solve_coco_segs(anno['segmentation'], img_h, img_w)
                 assert anno['segmentation']['size'] == [img_h, img_w], "segmentation.size != [img_h, img_w]"
             else:
                 spire_anno['segmentation'] = anno['segmentation']
+
             spire_anno['iscrowd'] = anno['iscrowd']
             category_id = anno['category_id']
             spire_anno['category_name'] = category_id_to_name[category_id]
+            spire_dict['annos'].append(spire_anno)
+
             if len(spire_anno['segmentation']) > 0:
                 spire_dict['annos'].append(spire_anno)
             else:
