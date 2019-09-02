@@ -4,7 +4,6 @@ import sys
 import logging
 import pycocotools.mask as maskUtils
 import numpy as np
-import cv2
 
 
 def load_class_desc(dataset='coco', logger=logging.getLogger()):
@@ -77,7 +76,7 @@ class SpireAnno(object):
         :return:
         """
         if anno_dir is not None:
-            self.anno_dir = os.path.join(anno_dir, 'annotations')
+            self.anno_dir = anno_dir
 
         coco_results = []
         for image_id, mapped_id in self.id_to_img_map.items():
@@ -151,7 +150,7 @@ class SpireAnno(object):
         from pycocotools.coco import COCO
 
         if anno_dir is not None:
-            self.anno_dir = os.path.join(anno_dir, 'annotations')
+            self.anno_dir = anno_dir
 
         self.coco = COCO(ground_truth_json)
         self.ids = list(self.coco.imgs.keys())
@@ -207,8 +206,6 @@ if __name__ == '__main__':
     spire_dir = args.spire_dir
     if spire_dir.endswith('/'):
         spire_dir = spire_dir[:-1]
-    if spire_dir.endswith('annotations'):
-        spire_dir = os.path.dirname(spire_dir)
 
     sa = SpireAnno(dataset=args.dataset, spire_dir=spire_dir, logger=logger)
     sa.cocoapi_eval(args.gt, anno_dir=spire_dir)
