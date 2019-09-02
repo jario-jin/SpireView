@@ -45,9 +45,9 @@ class SpireAnno(object):
         self.spire_dir = spire_dir
         self.classes = load_class_desc(dataset, logger)
 
-		self.class_id = {}
-		for id, cls in enumerate(self.classes):
-			self.class_id[cls] = id
+        self.class_id = {}
+        for id, cls in enumerate(self.classes):
+            self.class_id[cls] = id
 
         self.anno_dir = None
         self.anno_colors = self._create_colors(len(self.classes))
@@ -181,7 +181,7 @@ if __name__ == '__main__':
     fmt = '[%(asctime)s] [%(levelname)s] [ %(filename)s:%(lineno)s - %(name)s ] %(message)s '
     stream_handler.setFormatter(logging.Formatter(fmt))
 
-    logger.setLevel(logging.DEBUG)
+    # logger.setLevel(logging.DEBUG)
     logger.addHandler(stream_handler)
 
     import argparse
