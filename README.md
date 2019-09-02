@@ -13,6 +13,9 @@ Support a variety of annotations.
 <td><img src="demo/instance_labeling.gif" width="50%"></td>
 </tr>
 
+## Evaluation of spire annotations
+see [EVALUATION_README.md](utils/evaluate/README.md)
+
 ## One json corresponds to an image
 ```bash
 {
