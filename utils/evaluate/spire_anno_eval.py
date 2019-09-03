@@ -89,6 +89,7 @@ class SpireAnno(object):
             shutil.copy(p1, p2)
             '''
             with open(os.path.join(self.anno_dir, file_name), 'r') as f:
+                print(f)
                 json_str = f.read()
                 json_dict = json.loads(json_str)
 
