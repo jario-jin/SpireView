@@ -4,8 +4,7 @@ pip3 install numpy
 
 git clone https://github.com/jario-jin/cocoapi.git
 cd cocoapi/PythonAPI
-% sudo python3 setup.py build_ext --inplace
-make
+python setup.py build_ext install
 ```
 
 # How to run evaluation
