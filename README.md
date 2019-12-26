@@ -1,7 +1,7 @@
 # Spire Image Manager
 Another toolset for image data annotation, preprocessing, visualization.
 
-The labeling and visualization tools (Windows x64) can be download on [**Baidu Pan**](https://pan.baidu.com/s/1fb-WjkI24au7LGEy8Kg51g) (password: yf9r).
+The labeling and visualization tools (Windows x64) can be download on [**Baidu Pan**](https://pan.baidu.com/s/1_6nHFIg8XHG7bcdb0YSrKg) (password: h5fh).
 
 ## How to use
 ![labeling](demo/labeling.jpg)
