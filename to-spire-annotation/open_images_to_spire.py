@@ -144,13 +144,13 @@ def main():
                     spire_anno['area'] = w * h
                     spire_anno['bbox'] = [x, y, w, h]
                     spire_anno['iscrowd'] = 0
-                    spire_anno['confidence'] = anno[3]
-                    spire_anno['isoccluded'] = anno[8]
-                    spire_anno['istruncated'] = anno[9]
-                    spire_anno['isgroupof'] = anno[10]
-                    spire_anno['isdepiction'] = anno[11]
-                    spire_anno['isinside'] = anno[12]
-                    spire_anno['category_name'] = cat_dict[anno[2]].replace(' ', '_')
+                    spire_anno['confidence'] = float(anno[3])
+                    spire_anno['isoccluded'] = int(anno[8])
+                    spire_anno['istruncated'] = int(anno[9])
+                    spire_anno['isgroupof'] = int(anno[10])
+                    spire_anno['isdepiction'] = int(anno[11])
+                    spire_anno['isinside'] = int(anno[12])
+                    spire_anno['category_name'] = cat_dict[anno[2]].lower().replace(' ', '_')
                     spire_dict['annos'].append(spire_anno)
                 # Generate spire annotation files for each image
                 output_fn = os.path.join(args.output_dir, os.path.basename(img_fn) + '.json')
