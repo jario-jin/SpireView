@@ -53,7 +53,7 @@ def main():
     parser = argparse.ArgumentParser(description="Convert COCO annotation to spire annotation")
     parser.add_argument(
         "--open-images-anno",
-        default="/media/jario/PLAN_B/open_images/boxes/train-annotations-bbox.csv",
+        default="/media/jario/PLAN_B/open_images/boxes/validation-annotations-bbox.csv",
         help="path to open-images annotation file",
         # required=True
     )
@@ -70,7 +70,7 @@ def main():
     )
     parser.add_argument(
         "--output-dir",
-        default="/tmp/open_images_spire",
+        default="/media/jario/PLAN_B/open_human_head_val",
         help="path to spire home dir",
     )
     parser.add_argument(
@@ -92,14 +92,23 @@ def main():
     cat_dict = {}
     for cat_str in cat_strs:
         cat_d, cat_n = cat_str.split(',')[0].strip(), cat_str.split(',')[1].strip()
-        if 'Human' in cat_n:
+        if 'Human head' in cat_n:
             cat_dict[cat_d] = cat_n
 
-    sub_dirs = ['train_0', 'train_1', 'train_2', 'train_3', 'train_4', 'train_5', 'train_6', 'train_7',
-                'train_8', 'train_9', 'train_a', 'train_b', 'train_c', 'train_d', 'train_e', 'train_f']
+    is_train = False
+    if is_train:
+        sub_dirs = ['train_0', 'train_1', 'train_2', 'train_3', 'train_4', 'train_5', 'train_6', 'train_7',
+                    'train_8', 'train_9', 'train_a', 'train_b', 'train_c', 'train_d', 'train_e', 'train_f']
+    else:
+        sub_dirs = ['validation']
+
     img_fns = []
     for sub_dir in sub_dirs:
-        fn = os.path.join(args.open_images_dir, sub_dir, sub_dir)
+        if is_train:
+            fn = os.path.join(args.open_images_dir, sub_dir, sub_dir)
+        else:
+            fn = os.path.join(args.open_images_dir, sub_dir)
+
         for img_name in os.listdir(fn):
             if img_name.endswith('.jpg'):
                 img_fn = os.path.join(fn, img_name)
