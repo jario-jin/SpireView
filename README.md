@@ -1,4 +1,8 @@
 # Spire Image Manager
+
+**The git repository has been migrated to** https://gitee.com/jario-jin/SpireView.
+
+
 Another toolset for image data annotation, preprocessing, visualization.
 
 The labeling and visualization tools V4.7.7 (Windows x64) can be download on [**Baidu Pan**](https://pan.baidu.com/s/1v8M0qEpayh2aptJJlSTOXA?pwd=i88f).
