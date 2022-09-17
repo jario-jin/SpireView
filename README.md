@@ -1,7 +1,7 @@
 # Spire Image Manager
 Another toolset for image data annotation, preprocessing, visualization.
 
-The labeling and visualization tools V4.7.7 (Windows x64) can be download on [**Spire Web addr1**](http://jario.ren/spireview/SpireView-v4.7.7.zip) OR [**Spire Web addr2**](http://8.210.26.89/spireview/SpireView-v4.7.7.zip).
+The labeling and visualization tools V4.7.7 (Windows x64) can be download on [**Baidu Pan**](https://pan.baidu.com/s/1v8M0qEpayh2aptJJlSTOXA?pwd=i88f).
 
 ## How to use
 ![labeling](demo/labeling.jpg)
