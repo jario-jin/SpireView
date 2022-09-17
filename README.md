@@ -5,7 +5,7 @@
 
 Another toolset for image data annotation, preprocessing, visualization.
 
-The labeling and visualization tools V4.7.7 (Windows x64) can be download on [**Baidu Pan**](https://pan.baidu.com/s/1v8M0qEpayh2aptJJlSTOXA?pwd=i88f).
+The distribution of this software (**v4.7.8**) can be downloaded here on [**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/17qBEYz1jsdLtUVml_k8v3w?pwd=jdok).
 
 ## How to use
 ![labeling](demo/labeling.jpg)
