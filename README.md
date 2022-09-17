@@ -5,7 +5,7 @@
 
 Another toolset for image data annotation, preprocessing, visualization.
 
-The distribution of this software (**v4.7.8**) can be downloaded here on [**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/17qBEYz1jsdLtUVml_k8v3w?pwd=jdok).
+The distribution of this software (**v4.7.9**) can be downloaded here on [**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/103yMmm1SKollviPGRWhZ3A?pwd=li5l).
 
 ## How to use
 ![labeling](demo/labeling.jpg)
