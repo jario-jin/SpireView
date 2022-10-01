@@ -53,18 +53,18 @@ def main():
     parser = argparse.ArgumentParser(description="Convert COCO annotation to spire annotation")
     parser.add_argument(
         "--coco-anno",
-        default="/home/jario/dataset/coco/annotations/instances_val2014.json",
+        default="C:/Users/jario/Downloads/converted_jsons/det_val_cocofmt.json",
         help="path to coco annotation file",
-        required=True
+        # required=True
     )
     parser.add_argument(
         "--coco-image-dir",
-        default="/home/jario/dataset/coco/val2014",
+        default="C:/tmp/bdd100k/images/100k/val",
         help="path to coco image dir",
     )
     parser.add_argument(
         "--output-dir",
-        default="/tmp/coco_spire",
+        default="C:/dataset/SEG220309_bdd100k_det_val",
         help="path to spire home dir",
     )
     parser.add_argument(
@@ -115,20 +115,21 @@ def main():
             spire_anno['area'] = anno['area']
             spire_anno['bbox'] = anno['bbox']
 
-            if isinstance(anno['segmentation'], dict):
-                spire_anno['segmentation'] = solve_coco_segs(anno['segmentation'], img_h, img_w)
-                assert anno['segmentation']['size'] == [img_h, img_w], "segmentation.size != [img_h, img_w]"
-            else:
-                spire_anno['segmentation'] = anno['segmentation']
+            if 'segmentation' in anno.keys():
+                if isinstance(anno['segmentation'], dict):
+                    spire_anno['segmentation'] = solve_coco_segs(anno['segmentation'], img_h, img_w)
+                    assert anno['segmentation']['size'] == [img_h, img_w], "segmentation.size != [img_h, img_w]"
+                else:
+                    spire_anno['segmentation'] = anno['segmentation']
 
             spire_anno['iscrowd'] = anno['iscrowd']
             category_id = anno['category_id']
             spire_anno['category_name'] = category_id_to_name[category_id]
-            spire_dict['annos'].append(spire_anno)
 
-            if len(spire_anno['segmentation']) > 0:
+            if 'segmentation' in anno.keys() and len(spire_anno['segmentation']) > 0:
                 spire_dict['annos'].append(spire_anno)
             else:
+                spire_dict['annos'].append(spire_anno)
                 print("Image {} no segmentation.".format(img_name))
 
         # Generate spire annotation files for each image
@@ -136,7 +137,7 @@ def main():
         with open(output_fn, "w") as f:
             json.dump(spire_dict, f)
 
-        if args.save_image:
+        if 1:  # args.save_image:
             open(os.path.join(scaled_images, img_name), 'wb').write(
                 open(os.path.join(args.coco_image_dir, img_name), 'rb').read())
 

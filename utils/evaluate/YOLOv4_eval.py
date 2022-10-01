@@ -4,6 +4,8 @@ import sys
 import logging
 import pycocotools.mask as maskUtils
 import numpy as np
+import subprocess
+import cv2
 
 
 def load_class_desc(dataset='coco', logger=logging.getLogger()):
@@ -135,10 +137,10 @@ class SpireAnno(object):
         coco_dt = coco_gt.loadRes(str(json_result_file)) if coco_results else COCO()
 
         # coco_dt = coco_gt.loadRes(coco_results)
-        coco_eval = COCOeval(coco_gt, coco_dt, iou_type)
+        coco_eval = COCOeval(coco_gt, coco_dt, iou_type, maxDet=self.max_det, saveEval=save_eval)
         coco_eval.evaluate()
         coco_eval.accumulate()
-        coco_eval.summarize()
+        coco_eval.summarize(self.logger)
         return coco_eval
 
     def cocoapi_eval(self, ground_truth_json, anno_dir=None):
@@ -176,6 +178,47 @@ class SpireAnno(object):
         )
 
 
+class SpireFile:
+    def __init__(self):
+        self.json_dict = dict()
+
+    def setup(self, file_name, height, width):
+        """
+        :param file_name: (str) e.g. name.jpg
+        :param height: (int) e.g. 1080
+        :param width: (int) e.g. 1920
+        :return: None
+        """
+        self.json_dict['file_name'] = file_name
+        self.json_dict['height'] = int(height)
+        self.json_dict['width'] = int(width)
+        self.json_dict['annos'] = []
+
+    def add_annotation(self, bbox, score, category_name):
+        """
+        :param bbox: (float(4), nd.array) e.g. [x, y, width, height]
+        :param score: (float) e.g. 0.85
+        :param category_name: (str) e.g. "car"
+        :return: None
+        """
+        anno = dict()
+        anno['bbox'] = [float(bbox[0]), float(bbox[1]), float(bbox[2]), float(bbox[3])]
+        anno['area'] = float(bbox[2] * bbox[3])
+        anno['score'] = float(score)
+        anno['category_name'] = category_name
+        self.json_dict['annos'].append(anno)
+
+    def output_file(self, output_path):
+        """
+        :param output_file_name: (str) e.g. "./annotations"
+        :return: None
+        """
+        if not os.path.exists(output_path):
+            os.makedirs(output_path)
+        with open(os.path.join(output_path, self.json_dict['file_name'] + ".json"), "w") as f:
+            json.dump(self.json_dict, f)
+
+
 if __name__ == '__main__':
     logger = logging.getLogger(__name__)
     stream_handler = logging.StreamHandler(sys.stdout)
@@ -188,25 +231,101 @@ if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser(description="Spire annotation demo")
     parser.add_argument(
-        "--dataset",
-        required=True,
-        help="dataset name, can be choosen in ['coco','visdrone',...]",
+        "--yolov4-dir",
+        default='/home/jario/amov/darknet',
+        help="yolov4 darknet root dir",
     )
     parser.add_argument(
-        "--spire-dir",
-        required=True,
-        help="path to spire annotation dir",
+        "--yolodata-file",
+        default='/home/jario/amov/darknet/cfg/coco.data',
+        help="path to yolo .data file",
     )
     parser.add_argument(
-        "--gt",
-        required=True,
-        help="path to ground truth json file",
+        "--yolocfg-file",
+        default='/home/jario/amov/darknet/cfg/enet-coco.cfg',
+        help="path to yolo .cfg file",
+    )
+    parser.add_argument(
+        "--weights-file",
+        default='/home/jario/amov/darknet/backup/enetb0-coco_final.weights',
+        help="path to yolo .weights file",
+    )
+    parser.add_argument(
+        "--test-images-dir",
+        default='/home/jario/dataset/coco/minival2014',
+        help="path to test images dir",
+    )
+    parser.add_argument(
+        "--spire-dataset-name",
+        default='coco',
+        help="spire dataset name e.g. coco, mbzirc19_c1",
+    )
+    parser.add_argument(
+        "--coco-gt",
+        default='/home/jario/dataset/coco/annotations/instances_minival2014.json',
+        help="coco gt",
     )
     args = parser.parse_args()
 
-    spire_dir = args.spire_dir
-    if spire_dir.endswith('/'):
-        spire_dir = spire_dir[:-1]
+    yolov4_dir = args.yolov4_dir
+    test_images_dir = args.test_images_dir
+    image_fns = os.listdir(test_images_dir)
 
-    sa = SpireAnno(dataset=args.dataset, spire_dir=spire_dir, logger=logger)
-    sa.cocoapi_eval(args.gt, anno_dir=spire_dir)
+    i = 0
+    f = open(os.path.join(yolov4_dir, 'jtest.txt'), 'w')
+    for fn in image_fns:
+        if fn.endswith(".jpg") or fn.endswith(".png") or fn.endswith(".jpeg") \
+                or fn.endswith(".JPG") or fn.endswith(".JPEG"):
+            file_path = os.path.join(test_images_dir, fn)
+            f.write(file_path + '\n')
+            # print(file_path)
+            i += 1
+
+    f.flush()
+    f.close()
+    print("TOTAL_IMAGES: {}".format(i))
+
+    cmd = "cd {} && ./darknet detector test {} {} {} -thresh 0.01 -ext_output -dont_show " \
+          "-out jresult.json < jtest.txt".format(yolov4_dir, args.yolodata_file,
+        args.yolocfg_file, args.weights_file)
+    status, output = subprocess.getstatusoutput(cmd)
+    print(output)
+
+    cls_names = load_class_desc(dataset=args.spire_dataset_name)
+    print("CAT_NAMES: {}".format(cls_names))
+
+    f = open(os.path.join(yolov4_dir, 'jresult.json'), encoding='utf-8')
+    jresult = json.load(f)
+    f.close()
+
+    assert len(jresult) == i, "IMGAE NUM != JSON NUM"
+
+    annotations_dir = os.path.join(yolov4_dir, 'annotations')
+    if os.path.exists(annotations_dir):
+        for root, dirs, files in os.walk(annotations_dir, topdown=False):
+            for name in files:
+                os.remove(os.path.join(root, name))
+            for name in dirs:
+                os.rmdir(os.path.join(root, name))
+        os.removedirs(annotations_dir)
+
+    spf = SpireFile()
+    for j in jresult:
+        # print(j)
+        file_path = j['filename']
+        img = cv2.imread(file_path)
+        path, name = os.path.split(file_path)
+        h, w = img.shape[0], img.shape[1]
+        spf.setup(name, h, w)
+        for obj in j['objects']:
+            ow = obj['relative_coordinates']['width'] * w
+            oh = obj['relative_coordinates']['height'] * h
+            spf.add_annotation([obj['relative_coordinates']['center_x'] * w - ow / 2.,
+                                obj['relative_coordinates']['center_y'] * h - oh / 2.,
+                                obj['relative_coordinates']['width'] * w,
+                                obj['relative_coordinates']['height'] * h],
+                               obj['confidence'], obj['name'])
+        spf.output_file(annotations_dir)
+
+    sa = SpireAnno(dataset=args.spire_dataset_name, spire_dir=annotations_dir, logger=logger)
+    sa.cocoapi_eval(args.coco_gt, anno_dir=annotations_dir)

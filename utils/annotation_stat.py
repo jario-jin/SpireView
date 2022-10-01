@@ -47,9 +47,9 @@ def main():
     parser = argparse.ArgumentParser(description="Statistic on spire annotations")
     parser.add_argument(
         "--spire-anno",
-        default="/tmp/coco_spire",
+        default="D:\\Dataset\\zhuangbei",
         help="path to spire annotation dir",
-        required=True
+        # required=True
     )
     args = parser.parse_args()
     use_topdown_percent = True
@@ -63,6 +63,14 @@ def main():
     boxnum_each_image_min, boxnum_each_image_max = np.inf, 0
 
     for image_anno in image_jsons:
+        width, height = int(image_anno['width']), int(image_anno['height'])
+        file_name = image_anno['file_name']
+        image_dir = os.path.join(args.spire_anno, 'scaled_images')
+        image_fn = os.path.join(image_dir, file_name)
+        image = cv2.imread(image_fn)
+        if width != image.shape[1] or height != image.shape[0]:
+            print('ERROR: {}'.format(file_name))
+
         boxnum_each_image_min = np.minimum(boxnum_each_image_min, len(image_anno['annos']))
         boxnum_each_image_max = np.maximum(boxnum_each_image_max, len(image_anno['annos']))
         image_width_min = np.minimum(image_width_min, image_anno['width'])
