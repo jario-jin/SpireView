@@ -1,6 +1,8 @@
 # SpireView
 
-Another toolset for image&video data annotation, preprocessing, visualization.
+> **The git repository has been migrated to** https://gitee.com/jario-jin/SpireView.
+
+Another toolset for image&video data annotation, preprocessing and visualization.
 
 The distribution of this software (**v4.8.3**) can be downloaded here on [**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1egy49Q5kDthRE_CTnj8DeQ?pwd=0y98).
 
