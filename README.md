@@ -4,7 +4,7 @@
 
 Another toolset for image&video data annotation, preprocessing and visualization.
 
-The distribution of this software (**v4.9.0**) can be downloaded here on [**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1inT3Y3fDPTBJFgZoDCj94w?pwd=ts8i).
+The distribution of this software (**v4.9.1**) can be downloaded here on [**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1fZvc8QPVVgz4erdxa86UvQ?pwd=kcua).
 
 
 ## How to use
