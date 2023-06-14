@@ -4,8 +4,33 @@
 
 Another toolset for image&video data annotation, preprocessing and visualization.
 
-The distribution of this software (**v5.1.0**) can be downloaded here on [**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1ZEI2_ON_eV__NYgMhpS1bQ?pwd=hp1a).
+The distribution of this software (**v5.1.1**) can be downloaded here on [**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1piD3zLBx3TRl3yisQ-gEKw?pwd=qdra).
 
+支持[Segment-Anything-Model (SAM)](https://github.com/facebookresearch/segment-anything.git)，本地部署方法如下：
+
+```bash
+# 1. 下载SpireView源代码（运行在Ubuntu上，用于提供SAM服务）
+git clone https://gitee.com/jario-jin/SpireView.git
+# 2. 安装SAM（环境：Ubuntu、CUDA、至少12G显存）
+pip3 install opencv-python pycocotools matplotlib onnxruntime onnx
+git clone https://github.com/facebookresearch/segment-anything.git
+cd segment-anything
+pip3 install -e .
+# 3. 下载模型，转换ONNX
+wget https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth
+python3 scripts/export_onnx_model.py --checkpoint sam_vit_h_4b8939.pth --model-type vit_h --output sam_vit_h_4b8939.onnx --return-single-mask --opset 16
+# 4. 拷贝模型到SpireView
+cp sam_vit_h_4b8939.pth <path-to-SpireView>/SAM/
+cp sam_vit_h_4b8939.onnx <path-to-SpireView>/SAM/
+# 5. 运行本地SAM服务
+cd <path-to-SpireView>/SAM/
+python3 SAM_server.py
+# 6. 打开另一个终端，查看Ubuntu本地IP地址（后面需要在Windows版的SpireView中输入）
+ifconfig
+# 7. 下载SpireView最新Windows版本软件，按B站视频教程操作
+```
+
+[B站视频教程](https://space.bilibili.com/516880777?spm_id_from=333.1007.0.0)
 
 ## How to use
 ![labeling](demo/labeling.jpg)
