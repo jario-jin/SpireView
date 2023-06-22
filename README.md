@@ -1,4 +1,8 @@
-# SpireView
+<div align="center">
+  <img src="demo/spire-logo.png" width="400"/>
+</div>
+
+---
 
 > **The git repository has been migrated to** https://gitee.com/jario-jin/SpireView.
 
@@ -31,6 +35,8 @@ ifconfig
 ```
 
 [B站视频教程](https://space.bilibili.com/516880777?spm_id_from=333.1007.0.0)
+
+> 转换ONNX报错，请参考：https://github.com/facebookresearch/segment-anything/pull/210/Files
 
 ## How to use
 ![labeling](demo/labeling.jpg)
