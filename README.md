@@ -8,7 +8,14 @@
 
 Another toolset for image&video data annotation, preprocessing and visualization.
 
-The distribution of this software (**v5.1.1**) can be downloaded here on [**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1piD3zLBx3TRl3yisQ-gEKw?pwd=qdra).
+当前版本：**v5.1.2**，下载地址：[**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1duqTr6AdrfNyXm8Sx7c9qw?pwd=4iub).
+
+1. 界面优化吸附左侧，主要针对手工标注，矩形框、跟踪框、实例分割、关键点，增加右侧目标列表
+2. 修复Bug，删减无用小功能
+
+上一版本：**v5.1.1**，下载地址：[**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1piD3zLBx3TRl3yisQ-gEKw?pwd=qdra).
+
+---
 
 支持[Segment-Anything-Model (SAM)](https://github.com/facebookresearch/segment-anything.git)，本地部署方法如下：
 
