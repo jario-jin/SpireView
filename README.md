@@ -8,10 +8,10 @@
 
 Another toolset for image&video data annotation, preprocessing and visualization.
 
-客户端当前版本：**v5.1.4**，下载地址：[**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1-X2SmPohw4WU96fRSvCRaA?pwd=1t5f).
+客户端当前版本：**v5.1.5**，下载地址：[**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1LFtfg5bDowmw133nL9y6BQ?pwd=j0n2).
 
-1. 增加支持Grounding DINO半自动图像标注
-2. 修复Bugs
+1. 支持每个类别以不同颜色合成视频，参考Terminal->tovid
+2. 新增Terminal->imgmeta，显示当前图像中的meta标注信息
 
 
 支持[Segment-Anything-Model (SAM)](https://github.com/facebookresearch/segment-anything.git)，[Grounding DINO](https://github.com/IDEA-Research/GroundingDINO.git)标注，部署服务端请参考：
