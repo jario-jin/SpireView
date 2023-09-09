@@ -8,10 +8,9 @@
 
 Another toolset for image&video data annotation, preprocessing and visualization.
 
-客户端当前版本：**v5.1.6**，下载地址：[**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1JvtmODRw2TdjRQQwb09GAA?pwd=5n1o).
+客户端当前版本：**v5.1.7**，下载地址：[**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1ZXj_fiwBrb6vSeTa2tLgyw?pwd=3nqw).
 
-1. 支持COCO格式输出图像中的meta标注信息
-2. 修复bugs
+1. 修复右侧列表上限50个目标的bug
 
 
 支持[Segment-Anything-Model (SAM)](https://github.com/facebookresearch/segment-anything.git)，[Grounding DINO](https://github.com/IDEA-Research/GroundingDINO.git)标注，部署服务端请参考：
