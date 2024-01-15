@@ -8,9 +8,9 @@
 
 Another toolset for image&video data annotation, preprocessing and visualization.
 
-客户端当前版本：**v5.1.7**，下载地址：[**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1ZXj_fiwBrb6vSeTa2tLgyw?pwd=3nqw).
+客户端当前版本：**v5.2.0**，下载地址：[**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1ijemeX3mefkaWhHgfEMGUw?pwd=bn44).
 
-1. 修复右侧列表上限50个目标的bug
+1. 新增 `Terminal-> imgrnm` 指令，可同时修改Spire目录中的文件名、标注文件名和json中的file_name，方便数据集管理
 
 
 支持[Segment-Anything-Model (SAM)](https://github.com/facebookresearch/segment-anything.git)，[Grounding DINO](https://github.com/IDEA-Research/GroundingDINO.git)标注，部署服务端请参考：
