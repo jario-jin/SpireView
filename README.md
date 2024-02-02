@@ -8,10 +8,10 @@
 
 Another toolset for image&video data annotation, preprocessing and visualization.
 
-客户端当前版本：**v5.2.1**，下载地址：[**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/18Wuas3y5IgS1G4ty_TDQFw?pwd=ydl8).
+客户端当前版本：**v5.2.2**，下载地址：[**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1tq3dBKP8Sk4ib-31CPzMCw?pwd=7623).
 
-1. 优化SpireCV保存视频的显示
-2. 新增 `Terminal-> imgrnm` 指令，可同时修改Spire目录中的文件名、标注文件名和json中的file_name，方便数据集管理
+1. 优化SpireCV保存视频的显示，`Ctrl+S`可同时保持ROI区域和原图
+2. 优化界面，最大化时能够兼容两侧的标注对话框，建议升级
 
 支持[Segment-Anything-Model (SAM)](https://github.com/facebookresearch/segment-anything.git)，[Grounding DINO](https://github.com/IDEA-Research/GroundingDINO.git)标注，部署服务端请参考：
 
