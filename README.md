@@ -8,10 +8,12 @@
 
 Another toolset for image&video data annotation, preprocessing and visualization.
 
-客户端当前版本：**v5.2.2**，下载地址：[**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1tq3dBKP8Sk4ib-31CPzMCw?pwd=7623).
+客户端当前版本：**v5.2.3**，下载地址：[**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/15rGGq0qRoEuYvQ-oJiKU1g?pwd=0db5).
 
-1. 优化SpireCV保存视频的显示，`Ctrl+S`可同时保持ROI区域和原图
-2. 优化界面，最大化时能够兼容两侧的标注对话框，建议升级
+1. 修复图片文件数量多于标注`json`文件数量时，`Ctrl+O`报错
+2. 新增在播放`SpireCV`视频时，`Alt+R`可实现在线录制，方便试验成功视频的保存（PPT用^_^）
+3. 新增`Terminal->gea4i`命令，针对负样本图片文件夹，自动生成空的`json`标注文件
+4. 优化标注对话框界面
 
 支持[Segment-Anything-Model (SAM)](https://github.com/facebookresearch/segment-anything.git)，[Grounding DINO](https://github.com/IDEA-Research/GroundingDINO.git)标注，部署服务端请参考：
 
