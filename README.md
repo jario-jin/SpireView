@@ -8,12 +8,14 @@
 
 Another toolset for image&video data annotation, preprocessing and visualization.
 
-客户端当前版本：**v5.2.3**，下载地址：[**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/15rGGq0qRoEuYvQ-oJiKU1g?pwd=0db5).
+客户端当前版本：**v5.2.4**，下载地址：[**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1GDaehdo5MCbR64-sfTEWaQ?pwd=uoi7).
 
 1. 修复图片文件数量多于标注`json`文件数量时，`Ctrl+O`报错
 2. 新增在播放`SpireCV`视频时，`Alt+R`可实现在线录制，方便试验成功视频的保存（PPT用^_^）
-3. 新增`Terminal->gea4i`命令，针对负样本图片文件夹，自动生成空的`json`标注文件
-4. 优化标注对话框界面
+3. 新增`Tools->Terminal->gea4i`命令，针对负样本图片文件夹，自动生成空的`json`标注文件
+4. 新增`Tools->StopWatch`，用于测量相机采集延迟
+5. 优化标注对话框界面
+6. 新增对DJI平台SRT文件信息的支持，see [dji_vid_srt_to_spire.py](https://gitee.com/jario-jin/SpireView/blob/master/to-spire-annotation/dji_vid_srt_to_spire.py)
 
 支持[Segment-Anything-Model (SAM)](https://github.com/facebookresearch/segment-anything.git)，[Grounding DINO](https://github.com/IDEA-Research/GroundingDINO.git)标注，部署服务端请参考：
 
