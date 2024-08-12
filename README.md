@@ -8,7 +8,7 @@
 
 Another toolset for image&video data annotation, preprocessing and visualization.
 
-客户端当前版本：**v5.2.4**，下载地址：[**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1GDaehdo5MCbR64-sfTEWaQ?pwd=uoi7).
+客户端当前版本：**v5.2.7**，下载地址：[**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1AlGJHmbeWVZXaBmL4P64SQ?pwd=3jjf).
 
 1. 修复图片文件数量多于标注`json`文件数量时，`Ctrl+O`报错
 2. 新增在播放`SpireCV`视频时，`Alt+R`可实现在线录制，方便试验成功视频的保存（PPT用^_^）
