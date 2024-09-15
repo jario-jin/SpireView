@@ -8,20 +8,16 @@
 
 Another toolset for image&video data annotation, preprocessing and visualization.
 
-客户端当前版本：**v5.2.7**，下载地址：[**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1AlGJHmbeWVZXaBmL4P64SQ?pwd=3jjf).
+客户端当前版本：**v5.3.0**，下载地址：[**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/17DiQ9546AzJyy4WEdSR3yA?pwd=5mbg).
 
-1. 修复图片文件数量多于标注`json`文件数量时，`Ctrl+O`报错
-2. 新增在播放`SpireCV`视频时，`Alt+R`可实现在线录制，方便试验成功视频的保存（PPT用^_^）
-3. 新增`Tools->Terminal->gea4i`命令，针对负样本图片文件夹，自动生成空的`json`标注文件
-4. 新增`Tools->StopWatch`，用于测量相机采集延迟
-5. 优化标注对话框界面
-6. 新增对DJI平台SRT文件信息的支持，see [dji_vid_srt_to_spire.py](https://gitee.com/jario-jin/SpireView/blob/master/to-spire-annotation/dji_vid_srt_to_spire.py)
+1. 支持新版SAM2、GroundingDINO自动化标注（无需自设服务器）
+2. 修复BUG
 
-支持[Segment-Anything-Model (SAM)](https://github.com/facebookresearch/segment-anything.git)，[Grounding DINO](https://github.com/IDEA-Research/GroundingDINO.git)标注，部署服务端请参考：
 
-1. [服务端本地部署方法](https://www.wolai.com/rGgq3Fm4SLGPcwFsjrX7ig)
-2. [SpireView客户端与服务端通讯协议](https://www.wolai.com/f1BeT23zZp7rTjRL8aZNUD)
-3. [B站视频教程](https://space.bilibili.com/516880777?spm_id_from=333.1007.0.0)
+支持[Segment-Anything-Model (SAM)](https://github.com/facebookresearch/segment-anything.git)，[Grounding DINO](https://github.com/IDEA-Research/GroundingDINO.git)标注，如需要局域网部署，参考：
+
+1. [服务端本地部署方法](https://www.wolai.com/5ADBx74qv13EP4SDW2tv4i)
+2. [B站视频教程](https://space.bilibili.com/516880777?spm_id_from=333.1007.0.0)
 
 ## How to use
 ![labeling](demo/labeling.jpg)
