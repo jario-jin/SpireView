@@ -8,10 +8,10 @@
 
 Another toolset for image&video data annotation, preprocessing and visualization.
 
-客户端当前版本：**v5.3.0**，下载地址：[**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/17DiQ9546AzJyy4WEdSR3yA?pwd=5mbg).
+客户端当前版本：**v5.3.1**，下载地址：[**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1iXeu9k2sU8RAKshUIs6Ezg?pwd=kmt3).
 
 1. 支持新版SAM2、GroundingDINO自动化标注（无需自设服务器）
-2. 修复BUG
+2. 支持YOLO11训练管理
 
 
 支持[Segment-Anything-Model (SAM)](https://github.com/facebookresearch/segment-anything.git)，[Grounding DINO](https://github.com/IDEA-Research/GroundingDINO.git)标注，如需要局域网部署，参考：
