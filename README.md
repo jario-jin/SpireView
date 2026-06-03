@@ -8,7 +8,7 @@
 
 Another toolset for image&video data annotation, preprocessing and visualization.
 
-客户端当前版本：**v5.3.2**，下载地址：[**Baidu Pan (Windows x86-64)**](https://pan.baidu.com/s/1HiPQc5SrwWmK40EfaUSRgw?pwd=ii7r).
+客户端当前版本：**v5.3.5**，下载地址：[**Windows x86-64**](https://spireai.top/download/spireview/SpireView-v5.3.5.zip).
 
 1. 支持新版SAM2、GroundingDINO自动化标注（无需自设服务器）
 2. 支持YOLO11训练管理
